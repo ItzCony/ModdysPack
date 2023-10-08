@@ -5,16 +5,36 @@ settings.logRemovedRecipes = true
 settings.logSkippedRecipes = false
 settings.logErroringRecipes = true
 
-console.info('Hello, World! (You will see this line every time server resources reload)')
+
 
 onEvent('recipes', event => {
-	// Change recipes here
-})
+    event.custom(
+        {
+            type: "mekanism:reaction",
+            itemInput: {
+                ingredient: {
+                    item: 'draconicevolution:awakened_draconium_ingot'
+                },
+            },
+            fluidInput: {
+                fluid: 'kubejs:chaos_fluid',
+                amount: 250
+            },
+            gasInput: {
+                "gas": 'mekanism:sulfuric_acid',
+                "amount": 250
+            },
+            energyRequired: 20000.0,
+            duration: 200,
+            itemOutput: {
+                "item": 'kubejs:chaos_ingot.png',
+              },
+            gasOutput: {
+                "gas": 'mekanism:spent_nuclear_waste',
+                "amount": 10
+            }
+        })
+	event.recipes.thermal.crucible(Fluid.of('kubejs:chaos_fluid', 250), 'draconicevolution:chaos_shard').energy(2500)
+	})
 
-onEvent('item.tags', event => {
-	// Get the #forge:cobblestone tag collection and add Diamond Ore to it
-	// event.get('forge:cobblestone').add('minecraft:diamond_ore')
-
-	// Get the #forge:cobblestone tag collection and remove Mossy Cobblestone from it
-	// event.get('forge:cobblestone').remove('minecraft:mossy_cobblestone')
-})
+	
